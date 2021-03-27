@@ -75,5 +75,5 @@ class UserAccount(PermissionsMixin, CoreModel, AbstractBaseUser):
         if self.first_name and self.last_name:
             salutation = f"{self.first_name} {self.last_name}"
         else:
-            salutation = gettext_lazy("Dear client")
+            salutation = gettext_lazy("Dear user")
         return salutation
