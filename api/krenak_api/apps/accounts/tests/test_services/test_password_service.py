@@ -86,7 +86,7 @@ def test_reset_password_signature_failure(mocker, settings, exception):
 def test_reset_password_user_failure(mocker):
     new_password = "new_password_1234"  # nosec
     assert UserAccount.objects.count() == 0
-    reset_password_signature = TimestampSigner().sign(uuid.uuid4())
+    reset_password_signature = TimestampSigner().sign(1)
     mocked_change_password = mocker.patch(f"{PASSWORD_SERVICE_PATH}.change_password")
 
     with pytest.raises(InvalidResetPasswordSignatureError):

@@ -32,7 +32,7 @@ class UserManager(core_models.CoreManager, BaseUserManager):
 
 class UserAccount(PermissionsMixin, CoreModel, AbstractBaseUser):
 
-    email = models.EmailField(verbose_name=gettext_lazy("Email"), max_length=128, unique=True)
+    email = models.EmailField(verbose_name=gettext_lazy("Email"), max_length=128, unique=True, blank=False)
     first_name = models.CharField(verbose_name=gettext_lazy("first name"), max_length=30, blank=True, null=True)
     last_name = models.CharField(verbose_name=gettext_lazy("last name"), max_length=30, blank=True, null=True)
     is_staff = models.BooleanField(
