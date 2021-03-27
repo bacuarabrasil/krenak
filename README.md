@@ -35,6 +35,10 @@ Update `pip` & `setuptools`, install `fabric`, `invoke` & `pip-tools`:
 pip install -U fabric invoke pip pip-tools setuptools
 ```
 
+```bash
+pip-compile requirements-build.in && pip-compile requirements-dev.in
+```
+
 Install Python requirements:
 
 ```bash
