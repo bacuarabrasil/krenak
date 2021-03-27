@@ -28,11 +28,7 @@ if "SWAGGER" in settings.KRENAK_API_FEATURES:
     from drf_yasg.views import get_schema_view
 
     api_v1_schema_view = get_schema_view(
-        openapi.Info(
-            title="krenak_api",
-            default_version="v1",
-            description="krenak_api API v1 description",
-        ),
+        openapi.Info(title="krenak_api", default_version="v1", description="krenak_api API v1 description",),
         public=True,
         permission_classes=(permissions.AllowAny,),
         patterns=api_v1_urlpatterns,

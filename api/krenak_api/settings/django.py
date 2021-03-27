@@ -67,7 +67,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "krenak_api.wsgi.application"
 
-DATABASES = {"default": env.db("KRENAK_API_DATABASE_URL", default="psql://postgres:postgres@database:5432/krenak_api_db")}
+DATABASES = {
+    "default": env.db("KRENAK_API_DATABASE_URL", default="psql://postgres:postgres@database:5432/krenak_api_db")
+}
 
 AUTH_USER_MODEL = "accounts.UserAccount"
 AUTH_PASSWORD_VALIDATORS = [
