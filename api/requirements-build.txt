@@ -45,10 +45,14 @@ django==3.1.7
     #   -r requirements-build.in
     #   django-filter
     #   djangorestframework
+    #   djangorestframework-simplejwt
     #   drf-yasg
+djangorestframework-simplejwt==4.6.0
+    # via -r requirements-build.in
 djangorestframework==3.12.4
     # via
     #   -r requirements-build.in
+    #   djangorestframework-simplejwt
     #   drf-yasg
 drf-yasg==1.20.0
     # via -r requirements-build.in
@@ -72,6 +76,8 @@ prompt-toolkit==3.0.18
     # via click-repl
 psycopg2-binary==2.8.6
     # via -r requirements-build.in
+pyjwt==2.0.1
+    # via djangorestframework-simplejwt
 pyparsing==2.4.7
     # via packaging
 pytz==2021.1

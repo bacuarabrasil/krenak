@@ -4,12 +4,14 @@ from django.contrib.auth import logout as django_logout
 from rest_framework import status
 from rest_framework.response import Response
 
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 class LoginService:
     @classmethod
     def login(cls, request, user):
-        cls._django_login(request, user)
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        refresh = cls._django_login(request, user)
+        return Response(status=status.HTTP_200_OK, data={"refresh": str(refresh), "access": str(refresh.access_token)})
 
     @classmethod
     def logout(cls, request):
@@ -23,3 +25,4 @@ class LoginService:
     @staticmethod
     def _django_login(request, user):  # pragma: no cover
         django_login(request, user)
+        return RefreshToken.for_user(user)

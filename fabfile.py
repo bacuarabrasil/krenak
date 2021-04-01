@@ -10,12 +10,7 @@ from fabric_scripts.test import test_collection
 
 
 namespace = Collection(
-    celery_collection,
-    compose_collection,
-    frontend_collection,
-    git_collection,
-    pip_collection,
-    test_collection,
+    celery_collection, compose_collection, frontend_collection, git_collection, pip_collection, test_collection,
 )
 namespace.add_task(backend_run, name="run")
 namespace.add_task(backend_shell, name="shell")
