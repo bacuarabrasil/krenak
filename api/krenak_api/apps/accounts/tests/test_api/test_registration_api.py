@@ -21,6 +21,7 @@ def test_registration_api_success(unauthorized_api_client, mocker):
         "first_name": "jane",
         "last_name": "doe",
         "password": "super-secret-password",
+        "birthdate": "2021-04-01",
     }  # nosec
     response = unauthorized_api_client.post(reverse("api-v1-accounts:registration"), data)
 

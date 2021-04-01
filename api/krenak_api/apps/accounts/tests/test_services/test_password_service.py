@@ -113,7 +113,7 @@ def test_send_reset_password_link_success(settings, user_account, mocker):
     mocked_send_notification.assert_called_once_with(
         user.pk,
         {
-            "user_notification_salutation": "Dear client",
+            "user_notification_salutation": "Dear user",
             "domain_name": domain_name,
             "reset_password_link": f"https://{domain_name}/reset-password/{signature}",
         },
