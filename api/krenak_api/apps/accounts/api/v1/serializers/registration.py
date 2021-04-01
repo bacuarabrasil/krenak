@@ -13,10 +13,11 @@ class RegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, max_length=128)
     first_name = serializers.CharField(required=True, max_length=30)
     last_name = serializers.CharField(required=True, max_length=30)
+    birthdate = serializers.DateField(required=True, format="%d-%m-%Y", input_formats=["%d-%m-%Y", "iso-8601"])
 
     class Meta:
         model = UserAccount
-        fields = ("email", "first_name", "last_name", "password")
+        fields = ("email", "first_name", "last_name", "password", "birthdate")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
