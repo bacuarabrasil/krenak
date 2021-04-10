@@ -13,7 +13,10 @@ class EnrollmentListCreateAPIView(ListCreateAPIView):
 
     permission_classes = [IsAuthenticated]
     serializer_class = EnrollmentSerializer
-    queryset = Enrollment.objects.all()
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = Enrollment.objects.filter(enrollee=self.request.user)
+        return queryset
 
 
 class EnrollmentDetailsAPIView(RetrieveUpdateDestroyAPIView):
@@ -25,6 +28,10 @@ class EnrollmentDetailsAPIView(RetrieveUpdateDestroyAPIView):
     serializer_class = EnrollmentSerializer
     queryset = Enrollment.objects.all()
     lookup_field = "id"
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = Enrollment.objects.filter(enrollee=self.request.user)
+        return queryset
 
 
 class InterestListAPIView(ListAPIView):
