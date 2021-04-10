@@ -33,7 +33,7 @@ if "LOG_SQL" in KRENAK_API_FEATURES:  # pragma: no cover
                 "handlers": ["sql"],
                 "level": "DEBUG",
                 "filters": ["require_debug_true"],
-                "propagate": False,
+                "propagate": True,
             },
             "django.db.backends.schema": {"handlers": ["console"], "level": "DEBUG", "propagate": False},
         },
