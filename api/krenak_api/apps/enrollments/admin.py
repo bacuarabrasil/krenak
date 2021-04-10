@@ -7,13 +7,11 @@ from krenak_api.apps.enrollments.models import Enrollment, Interest
 class EnrollmentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EnrollmentForm, self).__init__(*args, **kwargs)
-        wtf = Enrollment.objects.exclude(enrollment_type__contains=self.instance.enrollment_type).filter(
-            interests__in=self.instance.interests.all()
-        )
+        matches = self.instance.matches
         if "matches" in self.fields:
             w = self.fields["matches"].widget
             choices = []
-            for choice in wtf:
+            for choice in matches:
                 choices.append((choice.id, choice.enrollee.email))
             w.choices = choices
 
@@ -37,10 +35,15 @@ class PartialEnrollmentForm(forms.ModelForm):
 class EnrollmentAdmin(admin.ModelAdmin):
     add_form = PartialEnrollmentForm
     form = EnrollmentForm
-    list_display = ("enrollee", "enrollment_type", "enrollment_status")
+    list_display = (
+        "enrollee",
+        "enrollment_type",
+        "enrollment_status",
+    )
     search_fields = ("enrollee__email", "enrollment_type", "enrollment_status", "interests__description")
     ordering = ("enrollee",)
-    filter_horizontal = ("interests", "matches")
+    readonly_fields = ["matches"]
+    filter_horizontal = ["interests"]
 
     def get_form(self, request, obj=None, **kwargs):
         """

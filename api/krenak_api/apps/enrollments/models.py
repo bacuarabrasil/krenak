@@ -32,10 +32,19 @@ class Enrollment(CoreModel, models.Model):
         verbose_name="Enrollment status", max_length=2, choices=EnrollmentStatus.choices, default=EnrollmentStatus.SENT
     )
     interests = models.ManyToManyField(Interest)
-    matches = models.ManyToManyField("self", blank=True)
 
-    # def available_matches(self):
-    #     return self.objects.exclude(enrollment_type__contains=self.enrollment_type, id=self.id)
+    @property
+    def matches(self):
+        try:
+            matches = (
+                Enrollment.objects.exclude(enrollment_type__contains=self.enrollment_type)
+                .filter(interests__in=self.interests.all())
+                .distinct()
+                .get()
+            )
+        except Enrollment.DoesNotExist:
+            matches = None
+        return matches
 
     def __str__(self):
-        return str(f"<{self.enrollment_type}>{self.enrollee.get_full_name()}")
+        return str(f"<{self.enrollment_type} - {self.id}> {self.enrollee.get_full_name()}")
