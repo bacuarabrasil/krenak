@@ -14,7 +14,7 @@ DEBUG = env.bool("KRENAK_API_DEBUG", default=False)
 
 INTERNAL_IPS = env.list("KRENAK_API_INTERNAL_IPS", default=[])
 
-ALLOWED_HOSTS = env.list("KRENAK_API_ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = env.list("KRENAK_API_ALLOWED_HOSTS", default=["*"])
 
 SECRET_KEY = env.str("KRENAK_API_SECRET_KEY")
 
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # our apps
     "krenak_api.apps.common.apps.CommonConfig",
     "krenak_api.apps.accounts.apps.AccountConfig",
+    "krenak_api.apps.enrollments.apps.EnrollmentsConfig",
 ] + env.list("KRENAK_API_DEV_INSTALLED_APPS", default=[])
 
 MIDDLEWARE = [
@@ -68,7 +69,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "krenak_api.wsgi.application"
 
 DATABASES = {
-    "default": env.db("KRENAK_API_DATABASE_URL", default="psql://postgres:postgres@database:5432/krenak_api_db")
+    "default": env.db("KRENAK_API_DATABASE_URL", default="psql://postgres:postgres@localhost:5432/krenak_api_db")
 }
 
 AUTH_USER_MODEL = "accounts.UserAccount"
