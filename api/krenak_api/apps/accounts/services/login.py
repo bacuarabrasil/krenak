@@ -11,7 +11,10 @@ class LoginService:
     @classmethod
     def login(cls, request, user):
         refresh = cls._django_login(request, user)
-        return Response(status=status.HTTP_200_OK, data={"refresh": str(refresh), "access": str(refresh.access_token)})
+        return Response(
+            status=status.HTTP_200_OK,
+            data={"id": user.id, "refresh": str(refresh), "access": str(refresh.access_token)},
+        )
 
     @classmethod
     def logout(cls, request):
