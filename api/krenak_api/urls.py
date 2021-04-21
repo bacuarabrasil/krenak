@@ -15,7 +15,15 @@ api_v1_urlpatterns = [
     path(
         f"{API_PREFIX}/v1/accounts/",
         include(("krenak_api.apps.accounts.api.v1.urls", "accounts"), namespace="api-v1-accounts"),
-    )
+    ),
+    path(
+        f"{API_PREFIX}/v1/",
+        include(("krenak_api.apps.enrollments.urls", "enrollments"), namespace="api-v1-enrollments"),
+    ),
+    path(
+        f"{API_PREFIX}/v1/",
+        include(("krenak_api.apps.mentorships.urls", "mentorships"), namespace="api-v1-mentorships"),
+    ),
 ]
 
 urlpatterns = admin_urlpatterns + api_v1_urlpatterns

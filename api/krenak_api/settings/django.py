@@ -14,7 +14,7 @@ DEBUG = env.bool("KRENAK_API_DEBUG", default=False)
 
 INTERNAL_IPS = env.list("KRENAK_API_INTERNAL_IPS", default=[])
 
-ALLOWED_HOSTS = env.list("KRENAK_API_ALLOWED_HOSTS", default=[])
+ALLOWED_HOSTS = env.list("KRENAK_API_ALLOWED_HOSTS", default=["*"])
 
 SECRET_KEY = env.str("KRENAK_API_SECRET_KEY")
 
@@ -32,12 +32,22 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_yasg",
+    # "ddrr",
     # our apps
     "krenak_api.apps.common.apps.CommonConfig",
     "krenak_api.apps.accounts.apps.AccountConfig",
+    "krenak_api.apps.enrollments.apps.EnrollmentsConfig",
+    "krenak_api.apps.mentorships.apps.MentorshipsConfig",
 ] + env.list("KRENAK_API_DEV_INSTALLED_APPS", default=[])
 
-MIDDLEWARE = [
+MIDDLEWARE = []
+
+if DEBUG:
+    MIDDLEWARE += [
+        "ddrr.middleware.DebugRequestsResponses",
+    ]
+
+MIDDLEWARE += [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -46,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ] + env.list("KRENAK_API_DEV_MIDDLEWARE", default=[])
+
 
 ROOT_URLCONF = "krenak_api.urls"
 
@@ -68,7 +79,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "krenak_api.wsgi.application"
 
 DATABASES = {
-    "default": env.db("KRENAK_API_DATABASE_URL", default="psql://postgres:postgres@database:5432/krenak_api_db")
+    "default": env.db("KRENAK_API_DATABASE_URL", default="psql://postgres:postgres@localhost:5432/krenak_api_db")
 }
 
 AUTH_USER_MODEL = "accounts.UserAccount"
