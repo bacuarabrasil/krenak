@@ -1,12 +1,18 @@
-from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    ListAPIView,
+    ListCreateAPIView,
+    RetrieveAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework.permissions import IsAuthenticated
 
 from krenak_api.apps.enrollments.models import Enrollment, Interest
 
-from .serializers import EnrollmentSerializer, InterestSerializer
+from .serializers import EnrollmentCreationSerializer, EnrollmentSerializer, InterestSerializer
 
 
-class EnrollmentListCreateAPIView(ListCreateAPIView):
+class EnrollmentListAPIView(ListAPIView):
     """
     API view to retrieve list of enrollments or create new
     """
@@ -17,6 +23,16 @@ class EnrollmentListCreateAPIView(ListCreateAPIView):
     def get_queryset(self, *args, **kwargs):
         queryset = Enrollment.objects.filter(enrollee=self.request.user)
         return queryset
+
+
+class EnrollmentCreateAPIView(CreateAPIView):
+    """
+    API view to retrieve list of enrollments or create new
+    """
+
+    permission_classes = [IsAuthenticated]
+    serializer_class = EnrollmentCreationSerializer
+    queryset = Enrollment.objects.all()
 
 
 class EnrollmentDetailsAPIView(RetrieveUpdateDestroyAPIView):
@@ -39,7 +55,6 @@ class InterestListAPIView(ListAPIView):
     API view to retrieve list of enrollments
     """
 
-    permission_classes = [IsAuthenticated]
     serializer_class = InterestSerializer
     queryset = Interest.objects.all()
 

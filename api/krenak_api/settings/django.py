@@ -32,11 +32,12 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_yasg",
+    # "ddrr",
     # our apps
     "krenak_api.apps.common.apps.CommonConfig",
     "krenak_api.apps.accounts.apps.AccountConfig",
     "krenak_api.apps.enrollments.apps.EnrollmentsConfig",
-    "ddrr",
+    "krenak_api.apps.mentorships.apps.MentorshipsConfig",
 ] + env.list("KRENAK_API_DEV_INSTALLED_APPS", default=[])
 
 MIDDLEWARE = []
