@@ -40,7 +40,7 @@ class Enrollment(CoreModel, models.Model):
                 Enrollment.objects.exclude(enrollment_type__contains=self.enrollment_type)
                 .filter(interests__in=self.interests.all())
                 .distinct()
-                .get()
+                .filter()
             )
         except Enrollment.DoesNotExist:
             matches = None
