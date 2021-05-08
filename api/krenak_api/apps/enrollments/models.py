@@ -24,7 +24,7 @@ class Enrollment(CoreModel, models.Model):
         FINISHED = "FI", _("Finished")
 
     resume = models.TextField(verbose_name="Resume", blank=True, max_length=500, null=True)
-    enrollee = models.ForeignKey(UserAccount, verbose_name="Enrolle account", on_delete=models.CASCADE)
+    enrollee = models.ForeignKey(UserAccount, verbose_name="Enrolle account", on_delete=models.CASCADE, related_name="enrollments")
     enrollment_type = models.CharField(
         verbose_name="Enrollment type", max_length=3, choices=EnrollmentType.choices, default=EnrollmentType.MENTEE
     )
