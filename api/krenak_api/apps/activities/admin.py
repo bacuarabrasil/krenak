@@ -18,8 +18,7 @@ class ActivityAdmin(admin.ModelAdmin):
     list_display = ("title",)
     search_fields = ("title",)
     ordering = ("title",)
-    exclude = ("comments",)
-    inlines = [TaskInline]
+    inlines = [TaskInline, CommentInline]
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):

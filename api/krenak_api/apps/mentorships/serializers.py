@@ -3,11 +3,12 @@ from rest_framework import serializers
 from krenak_api.apps.enrollments.models import Enrollment
 from krenak_api.apps.enrollments.serializers import EnrollmentSerializer
 from krenak_api.apps.mentorships.models import Mentorship
-
+from krenak_api.apps.activities.serializers import ActivitySerializer
 
 class MentorshipSerializer(serializers.ModelSerializer):
     mentor_enrollment = EnrollmentSerializer(many=False)
     mentee_enrollment = EnrollmentSerializer(many=False)
+    activities = ActivitySerializer(many=True, read_only=True)
 
     class Meta:
         model = Mentorship

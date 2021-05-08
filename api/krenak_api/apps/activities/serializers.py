@@ -29,6 +29,9 @@ class TaskSerializer(serializers.ModelSerializer):
 
 
 class ActivitySerializer(serializers.ModelSerializer):
+    tasks = TaskSerializer(many=True, read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
+
     class Meta:
         model = Activity
         fields = "__all__"
