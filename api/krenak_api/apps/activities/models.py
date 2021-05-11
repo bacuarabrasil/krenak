@@ -13,7 +13,7 @@ class Activity(CoreModel, models.Model):
 class Task(CoreModel, models.Model):
     title = models.CharField(verbose_name="Title", blank=True, max_length=30, null=True)
     done = models.BooleanField(verbose_name="Done", blank=True, default=False, null=True)
-    activity = models.ForeignKey(Activity, verbose_name="Activity", on_delete=models.CASCADE, null=True,  related_name="tasks")
+    activity = models.ForeignKey(Activity, verbose_name="Activity", on_delete=models.CASCADE, null=False, related_name="tasks")
 
 class Comment(CoreModel, models.Model):
     text = models.CharField(verbose_name="Text", blank=True, max_length=30, null=True)
