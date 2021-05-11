@@ -12,4 +12,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ("id", "email", "first_name", "last_name", "birthdate", "role")
 
     def get_enrollment_type(self, user):
+        if not user.enrollments.first():
+            return "MTE"
         return user.enrollments.first().enrollment_type
