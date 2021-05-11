@@ -11,21 +11,7 @@ from krenak_api.apps.enrollments.models import Enrollment, Interest
 
 from .serializers import EnrollmentCreationSerializer, EnrollmentSerializer, InterestSerializer
 
-
-class EnrollmentListAPIView(ListAPIView):
-    """
-    API view to retrieve list of enrollments or create new
-    """
-
-    permission_classes = [IsAuthenticated]
-    serializer_class = EnrollmentSerializer
-
-    def get_queryset(self, *args, **kwargs):
-        queryset = Enrollment.objects.filter(enrollee=self.request.user)
-        return queryset
-
-
-class EnrollmentCreateAPIView(CreateAPIView):
+class EnrollmentListCreateAPIView(ListCreateAPIView):
     """
     API view to retrieve list of enrollments or create new
     """
@@ -33,6 +19,15 @@ class EnrollmentCreateAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = EnrollmentCreationSerializer
     queryset = Enrollment.objects.all()
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = Enrollment.objects.filter(enrollee=self.request.user)
+        return queryset
+
+    def get_serializer_class(self):
+        if hasattr(self, 'request') and hasattr(self.request, 'method') and self.request.method == "POST":
+            return EnrollmentCreationSerializer
+        return EnrollmentSerializer
 
 
 class EnrollmentDetailsAPIView(RetrieveUpdateDestroyAPIView):

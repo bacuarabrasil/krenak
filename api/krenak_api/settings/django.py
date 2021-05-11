@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "krenak_api.apps.accounts.apps.AccountConfig",
     "krenak_api.apps.enrollments.apps.EnrollmentsConfig",
     "krenak_api.apps.mentorships.apps.MentorshipsConfig",
+    "krenak_api.apps.activities.apps.ActivitiesConfig",
 ] + env.list("KRENAK_API_DEV_INSTALLED_APPS", default=[])
 
 MIDDLEWARE = []

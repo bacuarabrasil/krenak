@@ -24,7 +24,7 @@ class Enrollment(CoreModel, models.Model):
         FINISHED = "FI", _("Finished")
 
     resume = models.TextField(verbose_name="Resume", blank=True, max_length=500, null=True)
-    enrollee = models.ForeignKey(UserAccount, verbose_name="Enrolle account", on_delete=models.CASCADE)
+    enrollee = models.ForeignKey(UserAccount, verbose_name="Enrolle account", on_delete=models.CASCADE, related_name="enrollments")
     enrollment_type = models.CharField(
         verbose_name="Enrollment type", max_length=3, choices=EnrollmentType.choices, default=EnrollmentType.MENTEE
     )
@@ -40,7 +40,7 @@ class Enrollment(CoreModel, models.Model):
                 Enrollment.objects.exclude(enrollment_type__contains=self.enrollment_type)
                 .filter(interests__in=self.interests.all())
                 .distinct()
-                .get()
+                .filter()
             )
         except Enrollment.DoesNotExist:
             matches = None

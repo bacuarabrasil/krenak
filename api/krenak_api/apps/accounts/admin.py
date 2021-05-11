@@ -13,7 +13,7 @@ admin.site.unregister(Group)
 class UserAdmin(DjangoUserAdmin):
     fieldsets = (
         (None, {"fields": ("password",)}),
-        (gettext_lazy("Personal info"), {"fields": ("email", "first_name", "last_name")}),
+        (gettext_lazy("Personal info"), {"fields": ("email", "first_name", "last_name", "birthdate")}),
         (
             gettext_lazy("Permissions"),
             {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")},
