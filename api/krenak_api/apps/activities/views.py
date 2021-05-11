@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import Activity, Task, Comment
 
-from .serializers import ActivitySerializer, TaskSerializer, CommentSerializer
+from .serializers import ActivitySerializer, TaskSerializer, CommentSerializer, CommentCreationSerializer
 
 
 class ActivityListCreateAPIView(ListCreateAPIView):
@@ -54,8 +54,12 @@ class CommentListCreateAPIView(ListCreateAPIView):
     """
 
     permission_classes = [IsAuthenticated]
-    serializer_class = CommentSerializer
     queryset = Comment.objects.all()
+
+    def get_serializer_class(self):
+        if hasattr(self, 'request') and hasattr(self.request, 'method') and self.request.method == "POST":
+            return CommentCreationSerializer
+        return CommentSerializer
 
 
 class CommentDetailsAPIView(RetrieveUpdateDestroyAPIView):
