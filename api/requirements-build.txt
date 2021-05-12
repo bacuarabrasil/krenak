@@ -36,14 +36,22 @@ coreschema==0.0.4
     # via
     #   coreapi
     #   drf-yasg
+dj-database-url==0.5.0
+    # via django-heroku
 django-environ==0.4.5
     # via -r requirements-build.in
+django-extensions==3.1.3
+    # via -r requirements-build.in
 django-filter==2.4.0
+    # via -r requirements-build.in
+django-heroku==0.3.1
     # via -r requirements-build.in
 django==3.1.7
     # via
     #   -r requirements-build.in
+    #   django-extensions
     #   django-filter
+    #   django-heroku
     #   djangorestframework
     #   djangorestframework-simplejwt
     #   drf-yasg
@@ -76,6 +84,8 @@ prompt-toolkit==3.0.18
     # via click-repl
 psycopg2-binary==2.8.6
     # via -r requirements-build.in
+psycopg2==2.8.6
+    # via django-heroku
 pyjwt==2.0.1
     # via djangorestframework-simplejwt
 pyparsing==2.4.7
@@ -113,6 +123,10 @@ vine==5.0.0
     #   celery
 wcwidth==0.2.5
     # via prompt-toolkit
+whitenoise==5.2.0
+    # via
+    #   -r requirements-build.in
+    #   django-heroku
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
