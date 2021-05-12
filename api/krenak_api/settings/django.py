@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_filters",
     "drf_yasg",
-    # "ddrr",
+    "ddrr",
     # our apps
     "krenak_api.apps.common.apps.CommonConfig",
     "krenak_api.apps.accounts.apps.AccountConfig",

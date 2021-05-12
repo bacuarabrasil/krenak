@@ -26,7 +26,7 @@ class LoginView(GenericAPIView):
 
 class LogoutView(GenericAPIView):
 
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     @swagger_auto_schema(responses={status.HTTP_204_NO_CONTENT: openapi.Response("")})
     def post(self, request):
