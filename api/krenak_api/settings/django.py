@@ -41,24 +41,21 @@ INSTALLED_APPS = [
     "krenak_api.apps.activities.apps.ActivitiesConfig",
 ] + env.list("KRENAK_API_DEV_INSTALLED_APPS", default=[])
 
-MIDDLEWARE = []
-
-if DEBUG:
-    MIDDLEWARE += [
-        "ddrr.middleware.DebugRequestsResponses",
-    ]
-
-MIDDLEWARE += [
+MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ] + env.list("KRENAK_API_DEV_MIDDLEWARE", default=[])
 
+if DEBUG:
+    MIDDLEWARE += [
+        "ddrr.middleware.DebugRequestsResponses",
+    ]
 
 ROOT_URLCONF = "krenak_api.urls"
 
