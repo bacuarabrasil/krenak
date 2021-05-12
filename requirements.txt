@@ -1,1 +1,1 @@
--r "api/requirements-build.txt"
+-r "api/requirements-dev.txt"
