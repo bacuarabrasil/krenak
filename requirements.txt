@@ -1,1 +1,2 @@
 -r "api/requirements-dev.txt"
+whitenoise
