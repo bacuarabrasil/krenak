@@ -124,7 +124,9 @@ vine==5.0.0
 wcwidth==0.2.5
     # via prompt-toolkit
 whitenoise==5.2.0
-    # via django-heroku
+    # via
+    #   -r requirements-build.in
+    #   django-heroku
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
