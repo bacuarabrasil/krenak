@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rest_framework.exceptions import ValidationError
 
 import pytest
@@ -14,6 +16,7 @@ def input_data():
         "password": "test12356",  # nosec
         "first_name": "first_name",
         "last_name": "last_name",
+        "birthdate": "2021-01-01",
     }
 
 
@@ -74,5 +77,6 @@ def test_registration_serializer_save_success(input_data):
     assert user.email == input_data["email"]
     assert user.first_name == input_data["first_name"]
     assert user.last_name == input_data["last_name"]
+    # assert user.birthdate == datetime.date.fromisoformat('2020-10-04')
     assert user.has_usable_password()
     assert user.check_password(input_data["password"])

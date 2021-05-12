@@ -17,7 +17,7 @@ def test_login_service_login(user_account, mocker):
 
     response = service.login(request, user)
 
-    assert response.status_code == status.HTTP_204_NO_CONTENT
+    assert response.status_code == status.HTTP_200_OK
     mocked_django_login.assert_called_once_with(request, user)
 
 

@@ -19,6 +19,7 @@ astroid==2.5.1
 attrs==20.3.0
     # via
     #   black
+    #   ddrr
     #   jsonschema
     #   pytest
 backcall==0.2.0
@@ -75,6 +76,8 @@ coverage==5.5
     #   pytest-cov
 cryptography==3.4.7
     # via paramiko
+ddrr==2.0.1
+    # via -r requirements-dev.in
 decorator==4.4.2
     # via ipython
 distlib==0.3.1
@@ -92,14 +95,19 @@ django-filter==2.4.0
 django==3.1.7
     # via
     #   -r requirements-build.in
+    #   ddrr
     #   django-debug-toolbar
     #   django-filter
     #   djangorestframework
+    #   djangorestframework-simplejwt
     #   drf-yasg
     #   model-bakery
+djangorestframework-simplejwt==4.6.0
+    # via -r requirements-build.in
 djangorestframework==3.12.4
     # via
     #   -r requirements-build.in
+    #   djangorestframework-simplejwt
     #   drf-yasg
 docker-compose==1.28.6
     # via -r requirements-dev.in
@@ -225,6 +233,8 @@ pygments==2.8.1
     # via
     #   -r requirements-dev.in
     #   ipython
+pyjwt==2.0.1
+    # via djangorestframework-simplejwt
 pylama==7.7.1
     # via -r requirements-dev.in
 pylint-celery==0.3

@@ -15,7 +15,19 @@ api_v1_urlpatterns = [
     path(
         f"{API_PREFIX}/v1/accounts/",
         include(("krenak_api.apps.accounts.api.v1.urls", "accounts"), namespace="api-v1-accounts"),
-    )
+    ),
+    path(
+        f"{API_PREFIX}/v1/",
+        include(("krenak_api.apps.enrollments.urls", "enrollments"), namespace="api-v1-enrollments"),
+    ),
+    path(
+        f"{API_PREFIX}/v1/",
+        include(("krenak_api.apps.mentorships.urls", "mentorships"), namespace="api-v1-mentorships"),
+    ),
+        path(
+        f"{API_PREFIX}/v1/",
+        include(("krenak_api.apps.activities.urls", "activities"), namespace="api-v1-activities"),
+    ),
 ]
 
 urlpatterns = admin_urlpatterns + api_v1_urlpatterns
@@ -28,11 +40,7 @@ if "SWAGGER" in settings.KRENAK_API_FEATURES:
     from drf_yasg.views import get_schema_view
 
     api_v1_schema_view = get_schema_view(
-        openapi.Info(
-            title="krenak_api",
-            default_version="v1",
-            description="krenak_api API v1 description",
-        ),
+        openapi.Info(title="krenak_api", default_version="v1", description="krenak_api API v1 description",),
         public=True,
         permission_classes=(permissions.AllowAny,),
         patterns=api_v1_urlpatterns,

@@ -153,7 +153,7 @@ def test_get_full_name(user_account, first_name, last_name, email, expected):
     assert user.get_full_name() == expected
 
 
-@pytest.mark.parametrize("first_name,last_name,expected", [("Jane", "Doe", "Jane Doe"), (None, None, "Dear client")])
+@pytest.mark.parametrize("first_name,last_name,expected", [("Jane", "Doe", "Jane Doe"), (None, None, "Dear user")])
 @pytest.mark.django_db
 def test_notification_salutation(user_account, first_name, last_name, expected):
     user = user_account(first_name=first_name, last_name=last_name)

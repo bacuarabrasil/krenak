@@ -33,7 +33,11 @@ def fail(message: str) -> None:
 
 
 _PROJECT_NAME = "krenak_api"
-_AVAILABLE_ENVIRONMENTS = ("develop", "beta", "production",)
+_AVAILABLE_ENVIRONMENTS = (
+    "develop",
+    "beta",
+    "production",
+)
 
 config = {
     "project_name": _PROJECT_NAME,
